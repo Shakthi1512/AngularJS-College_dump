@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="shoppingApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="ShoppingCtrl">
+  <input type="text" ng-model="newItem" placeholder="Add an item">
+  <button ng-click="addItem()">Add</button>
+  <ul>
+    <li ng-repeat="item in items track by $index">
+      {{item}}
+      <button ng-click="removeItem($index)">Remove</button>
+    </li>
+  </ul>
+  <script>
+    angular.module('shoppingApp', []).controller('ShoppingCtrl', function($scope) {
+      $scope.items = ['Apples', 'Bananas', 'Oranges'];
+      $scope.addItem = function() {
+        $scope.items.push($scope.newItem);
+        $scope.newItem = '';
+      };
+      $scope.removeItem = function(index) {
+        $scope.items.splice(index, 1);
+      };
+    });
+  </script>
+</body>
+</html>
