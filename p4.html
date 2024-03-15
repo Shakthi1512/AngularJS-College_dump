@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Factorial and Square Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="CalculatorController">
+        <h2>Factorial and Square Calculator</h2>
+        <input type="number" ng-model="inputNumber" placeholder="Enter a number" />
+        <button ng-click="calculateFactorial()">Calculate Factorial</button>
+        <p ng-show="factorialResult !== null">Factorial: {{ factorialResult }}</p>
+        <button ng-click="calculateSquare()">Calculate Square</button>
+        <p ng-show="squareResult !== null">Square: {{ squareResult }}</p>
+    </div>
+
+    <script>
+        angular.module('myApp', [])
+            .controller('CalculatorController', function ($scope) {
+                $scope.calculateFactorial = function () {
+                    var result = 1;
+                    for (var i = 2; i <= $scope.inputNumber; i++) {
+                        result *= i;
+                    }
+                    $scope.factorialResult = result;
+                };
+
+                $scope.calculateSquare = function () {
+                    $scope.squareResult = $scope.inputNumber * $scope.inputNumber;
+                };
+            });
+    </script>
+</body>
+</html>
